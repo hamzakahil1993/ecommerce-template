@@ -1,17 +1,320 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
 
-        {% block javascripts %}
-{% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
+<head>
+
+    <!-- Basic Page Needs
+        ================================================== -->
+    <meta charset="utf-8">
+    <title>{% block title %}Swaroski - Bracelet{% endblock %}</title>
+    <meta name="description" content="" />
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+        ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="theme-color" content="#212121" />
+    <meta name="msapplication-navbutton-color" content="#212121" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#212121" />
+
+    <!-- CSS
+        ================================================== -->
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/animsition.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/unicons.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/lighbox.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/tooltip.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/swiper.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/style.css')}}" />
+
+    <!-- Favicons
+        ================================================== -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+
+    {% block stylesheets %}
+    {% endblock %}
+
+    {% block javascripts %}
+    {% endblock %}
+</head>
+
+<body>
+    <div class="animsition">
+
+        <!-- Primary Page Layout
+		================================================== -->
+
+        <!-- Modal navigation -->
+
+        <div class="modal fade modal-side-nav" id="modalNavigation" tabindex="-1" role="dialog"
+            aria-labelledby="modalNavigation" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content bg-black section-side-nav-background-fashion">
+                    <div class="modal-body z-bigger d-flex">
+                        <button type="button" class="close-side-nav" data-dismiss="modal" aria-label="Close">
+                        </button>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12 pt-5 mt-4 px-4">
+                                    <!-- Nav link 1 -->
+                                    <a class="link link-normal active-blue text-center-v w-100 side-nav-link-col size-18"
+                                        data-toggle="collapse" href="#side-nav-collapse-1" role="button"
+                                        aria-expanded="false">Accueil<i
+                                            class="uil uil-arrow-right size-20 color-light ml-auto"></i></a>
+                                    <a class="link link-normal active-blue text-center-v w-100 side-nav-link-col size-18"
+                                        data-toggle="collapse" href="#side-nav-collapse-1" role="button"
+                                        aria-expanded="false">Boutique<i
+                                            class="uil uil-arrow-right size-20 color-light ml-auto"></i></a>
+                                    <a class="link link-normal active-blue text-center-v w-100 side-nav-link-col size-18"
+                                        data-toggle="collapse" href="#side-nav-collapse-1" role="button"
+                                        aria-expanded="false">Contact<i
+                                            class="uil uil-arrow-right size-20 color-light ml-auto"></i></a>
+
+                                </div>
+                            </div>
+
+                            <div class="col-12 pt-5 px-4">
+                                <a href="" class="link link-blue mb-1 mr-2" data-hover="Instagram">Instagram</a>
+                                <a href="" class="link link-blue mb-1 mr-2" data-hover="Twitter">Twitter</a>
+                                <a href="" class="link link-blue mb-1" data-hover="LinkedIn">LinkedIn</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Search -->
+
+    <div class="modal fade modal-search" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="modalSearch"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body z-bigger d-flex justify-content-center align-items-center">
+                    <div class="container-fluid">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="uil uil-multiply"></i>
+                        </button>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    <input type="text" class="form-style search" placeholder="Search..."
+                                        autocomplete="off">
+                                </div>
+                                <p class="mb-0 mt-4 text-center color-gray-dark font-weight-500">Start typing & press
+                                    "Enter" or "ESC" to close</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Cart -->
+
+    <div class="modal fade modal-cart" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="modalCart"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body z-bigger">
+                    <div class="container-fluid">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="uil uil-multiply"></i>
+                        </button>
+                        <div class="row">
+                            <div class="col-12">
+                                <h5 class="mb-3 pb-3">Shopping cart</h5>
+                            </div>
+                            <div class="col-sm-4 img-wrap mb-2 mb-sm-0">
+                                <img class="border-4" src="img/shop-1.jpg" alt="shop cart">
+                            </div>
+                            <div class="col align-self-center">
+                                <a href="" class="link mr-3" data-hover="Old retro suitcase">Old retro suitcase</a>
+                                <p class="mb-0 lead font-weight-500 color-gray">$237</p>
+                            </div>
+                            <div class="col-auto align-self-center">
+                                <p class="mb-0 lead color-primary">x 2</p>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-sm-4 img-wrap mb-2 mb-sm-0">
+                                <img class="border-4" src="img/shop-2.jpg" alt="shop cart">
+                            </div>
+                            <div class="col align-self-center">
+                                <a href="" class="link mr-3" data-hover="Blank retro sign">Blank retro sign</a>
+                                <p class="mb-0 lead font-weight-500 color-gray">$173</p>
+                            </div>
+                            <div class="col-auto align-self-center">
+                                <p class="mb-0 lead color-primary">x 3</p>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-sm-4 img-wrap mb-2 mb-sm-0">
+                                <img class="border-4" src="img/shop-3.jpg" alt="shop cart">
+                            </div>
+                            <div class="col align-self-center">
+                                <a href="" class="link mr-3" data-hover="Mechanical weight scale">Mechanical weight
+                                    scale</a>
+                                <p class="mb-0 lead font-weight-500 color-gray">$57</p>
+                            </div>
+                            <div class="col-auto align-self-center">
+                                <p class="mb-0 lead color-primary">x 2</p>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-sm align-self-center">
+                                <p class="mb-0 lead color-dark-blue size-24 font-weight-500">Total: <span
+                                        class="font-weight-bold">$1107</span></p>
+                            </div>
+                            <div class="col-sm text-sm-right mt-3 mt-sm-0">
+                                <a href="cart.html" class="btn btn-primary-gradient animsition-link"><i
+                                        class="uil uil-arrow-circle-right size-22 mr-2"></i>View Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section over-hide">
+        <!-- Side Navigation
+			================================================== -->
+
+        <div class="side-nav-wrap top-position cbp-af-header">
+            <div class="section-1400">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-auto align-self-center pr-0 logo-fashion">
+                            <a class="animsition-link" href="index.html">
+                                <img src="img/webiste/Swarovski-Logo.png" alt="logo">
+                            </a>
+                        </div>
+                        <div class="col align-self-center text-right px-0 px-sm-2">
+                            <a href="#" class="btn btn-icon-transparent secondary btn-44 d-none d-sm-inline">
+                                <i class="uil uil-heart size-20"></i>
+                            </a>
+                            <a href="#" class="btn btn-icon-transparent secondary btn-44 position-relative"
+                                data-toggle="modal" data-target="#modalCart">
+                                <i class="uil uil-cart size-20"></i>
+                                <span class="btn-small-icon bg-secondary color-white">7</span>
+                            </a>
+                            <a href="#" class="btn btn-icon-transparent secondary btn-44" data-toggle="modal"
+                                data-target="#modalSearch">
+                                <i class="uil uil-search size-20"></i>
+                            </a>
+                        </div>
+                        <div class="col-auto align-self-center pt-2">
+                            <div class="nav-but-wrap" data-toggle="modal" data-target="#modalNavigation">
+                                <div class="menu-icon">
+                                    <span class="menu-icon__line menu-icon__line-left"></span>
+                                    <span class="menu-icon__line"></span>
+                                    <span class="menu-icon__line menu-icon__line-right"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         {% block body %}{% endblock %}
-    </body>
+
+        <!-- Footer
+		================================================== -->
+
+        <div class="section over-hide padding-top pb-4 section-background-6" id="footer">
+            <div class="section-1400 z-bigger">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4 col-lg-6 mb-5 mb-md-0 text-center text-md-left">
+                            <div class="row justify-content-center justify-content-md-start">
+                                <div class="col-auto footer-logo-fashion">
+                                    <img src="img/webiste/Swarovski-Logo.png" alt="logo">
+                                </div>
+                                <div class="col-12 pl-xl-5 mt-5 align-self-center">
+                                    <p class="mb-1 size-17 text-center-v color-dark-blue"><i
+                                            class="uil uil-map-marker-alt size-22 mr-3 color-blue"></i> 123 1er Avenue,
+                                        France</p>
+                                    <div class="clearfix w-100"></div>
+                                    <p class="mb-0 size-17 text-center-v color-dark-blue"><i
+                                            class="uil uil-clock-seven size-22 mr-3 color-blue"></i> Du lundi au samedi,
+                                        de 8h00 à 18h00</p>
+                                </div>
+                                <div class="col-10 col-sm-8 col-md-12 col-lg-8 col-xl-7 pl-xl-5 mt-4 pt-3 img-wrap">
+                                    <img src="img/payment.svg" alt="payment">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 mb-5 mb-md-0 text-center text-md-left">
+                            <h5 class="mb-4 color-dark-blue">Swarovski</h5>
+                            <a href="about-us-creative.html" class="link size-18 mb-1 animsition-link"
+                                data-hover="Accueil">Accueil</a>
+                            <div class="clearfix w-100"></div>
+                            <a href="services-creative.html" class="link size-18 mb-1 animsition-link"
+                                data-hover="Boutique">Boutique</a>
+                            <div class="clearfix w-100"></div>
+                            <a href="portfolio-mixed.html" class="link size-18 mb-1 animsition-link"
+                                data-hover="Contact">Contact</a>
+                        </div>
+                        <div class="col-md-4 col-lg-3 text-center text-md-left">
+                            <h5 class="mb-4 color-dark-blue">Contact</h5>
+                            <a href="" class="link size-18 mb-1" data-hover="+38(0)6 12 34 56 78">+38(0)6 12 34 56
+                                78</a>
+                            <div class="clearfix w-100"></div>
+                            <a href="" class="link size-18 link-blue"
+                                data-hover="contact@gmail.com">contact@gmail.com</a>
+                            <h5 class="mb-4 mt-5 color-dark-blue">Suivez nous</h5>
+                            <a href="" class="link link-blue mb-1 mr-2" data-hover="Instagram">Instagram</a>
+                            <a href="" class="link link-blue mb-1 mr-2" data-hover="Twitter">Twitter</a>
+                            <a href="" class="link link-blue mb-1" data-hover="LinkedIn">LinkedIn</a>
+                        </div>
+                        <div class="col-12 mt-5 mb-4">
+                            <div class="section divider"></div>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-12">
+                            <p class="mb-0 size-14 color-gray-dark mt-1 font-weight-500">© 2023 AntoineFMT Tous droits
+                                réservés.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="progress-wrap blue">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path class="blue" d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+        </div>
+        <!-- JAVASCRIPT
+    ================================================== -->
+        <script src="{{asset('js/jquery.min.js')}}"></script>
+        <script src="{{asset('js/popper.min.js')}}"></script>
+        <script src="{{asset('js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('js/plugins.js')}}"></script>
+        <script src="{{asset('js/custom.js')}}"></script>
+        <script>
+            // Type text
+
+            var typed = new Typed('.typed-fashion', {
+                strings: ['faits-main', '100% Français', 'en perle'],
+                typeSpeed: 55,
+                backSpeed: 0,
+                startDelay: 200,
+                backDelay: 2500,
+                loop: true,
+                loopCount: false,
+                showCursor: true,
+                cursorChar: "_",
+                attr: null
+            });	
+        </script>
+</body>
+
 </html>
